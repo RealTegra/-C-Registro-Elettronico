@@ -24,10 +24,10 @@ Andare nella cartella /cmake-build-debug ed avviare RegistroElettronico.exe
 
 # Come aprire il codice sorgente?
 
-Anddare nella root della cartella e aprire il main.cpp
+Andare nella root della cartella e aprire il main.cpp
 
 # Come compilare il main da soli?
 
 - Aprire il terminale nella root della cartella e digitare g++ main.cpp -o RegistroElettronico.exe
-Oppure
+<h4> Oppure </h4>
 - Aprire il progetto in un IDE (Come Clion, Code::blocks o DevC++) e compilarlo da li.
