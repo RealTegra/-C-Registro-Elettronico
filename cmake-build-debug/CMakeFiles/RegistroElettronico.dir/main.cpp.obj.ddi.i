@@ -46584,6 +46584,7 @@ int main() {
     int scelta = 0;
 
     do {
+        system("cls");
         scelta = menu();
         switch (scelta) {
             case 1:
@@ -46631,6 +46632,7 @@ int menu() {
     cout << "0. Esci" << endl;
 
     cin >> s;
+    system("cls");
     return s;
 }
 
@@ -46649,42 +46651,41 @@ void caricaAlunno(vector<alunno> &alunni) {
     cin >> anno;
     cout << "Inserisci la classe dell'alunno" << endl;
     cin >> classe;
-    cout << "L'alunno è stato bocciato? 1: Sì, 0: No " << endl;
+    cout << "L'alunno \x82 stato bocciato? 1: Si, 0: No " << endl;
     cin >> bocciato;
 
     if (nome.length() < 2) {
         cout << "Inserisci un nome valido!" << endl;
-        return;
     }
     else if (cognome.length() < 2) {
         cout << "Inserisci un cognome valido!" << endl;
-        return;
     }
     else if (eta < 14 || eta > 20) {
-        cout << "Inserisci un'età valida! tra i 14 e 20 anni" << endl;
-        return;
+        cout << "Inserisci un'eta valida! tra i 14 e 20 anni" << endl;
     }
     else if (anno < 1900 || anno > 2020) {
-        cout << "Inserisci un anno di nascita valido!" << endl;
-        return;
+        cout << "Inserisci un anno di nascita valido! (Tra 1900 e 2020)" << endl;
     }
     else if (classe.length() != 5) {
         cout << "Inserisci una classe valida nel seguente formato: SezioneCorsoIndirizzo (Esempio: 3CINF)" << endl;
-        return;
+    }
+    else {
+        alunno temp;
+        temp.matricola = matricola;
+        temp.nome = nome;
+        temp.cognome = cognome;
+        temp.eta = eta;
+        temp.anno = anno;
+        temp.classe = classe;
+        temp.bocciato = bocciato;
+        alunni.push_back(temp);
+        matricola++;
+
+        cout << "Alunno " << alunni.back().nome << " " << alunni.back().cognome << " caricato con successo" << endl;
     }
 
-    alunno temp;
-    temp.matricola = matricola;
-    temp.nome = nome;
-    temp.cognome = cognome;
-    temp.eta = eta;
-    temp.anno = anno;
-    temp.classe = classe;
-    temp.bocciato = bocciato;
-    alunni.push_back(temp);
-    matricola++;
+    system("pause");
 
-    cout << "Alunno " << alunni.back().nome << " " << alunni.back().cognome << " caricato con successo" << endl;
 }
 void cancellaAlunno(vector<alunno> &alunni, vector<voto> &voti) {
     int matricola;
