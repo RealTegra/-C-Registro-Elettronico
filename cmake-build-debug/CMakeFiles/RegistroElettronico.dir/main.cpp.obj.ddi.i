@@ -46577,6 +46577,7 @@ void visualizzaAlunni(vector<alunno> &alunni);
 void visualizzaVoti(vector<alunno> &alunni,vector<voto> &voti);
 
 int main() {
+
     vector<alunno> alunni;
     vector<voto> voti;
 
@@ -46628,7 +46629,7 @@ int menu() {
     cout << "6. Visualizza tutti gli alunni" << endl;
     cout << "7. Visualizza i voti di un alunno e la sua media totale" << endl;
     cout << "0. Esci" << endl;
-    cin.ignore();
+
     cin >> s;
     return s;
 }
@@ -46639,52 +46640,52 @@ void caricaAlunno(vector<alunno> &alunni) {
     bool bocciato;
 
     cout << "Inserisci il nome dell'alunno" << endl;
-    cin.ignore();
     cin >> nome;
     cout << "Inserisci il cognome dell'alunno" << endl;
-    cin.ignore();
     cin >> cognome;
     cout << "Inserisci l'eta dell'alunno" << endl;
-    cin.ignore();
     cin >> eta;
     cout << "Inserisci l'anno di nascita dell'alunno" << endl;
-    cin.ignore();
     cin >> anno;
     cout << "Inserisci la classe dell'alunno" << endl;
-    cin.ignore();
     cin >> classe;
-    cout << "l'alunno è stato bocciato? 1: Si, 0: No " << endl;
-    cin.ignore();
+    cout << "L'alunno è stato bocciato? 1: Sì, 0: No " << endl;
     cin >> bocciato;
 
     if (nome.length() < 2) {
         cout << "Inserisci un nome valido!" << endl;
+        return;
     }
     else if (cognome.length() < 2) {
         cout << "Inserisci un cognome valido!" << endl;
+        return;
     }
     else if (eta < 14 || eta > 20) {
-        cout << "Inserisci un'eta valida! tra i 14 e 20 anni" << endl;
+        cout << "Inserisci un'età valida! tra i 14 e 20 anni" << endl;
+        return;
     }
     else if (anno < 1900 || anno > 2020) {
         cout << "Inserisci un anno di nascita valido!" << endl;
+        return;
     }
     else if (classe.length() != 5) {
-        cout << "Inserisci una classe valida nel seguente formato: SezioneCorsoIndirizzo (Esempio: 3CINF)" <<endl;
+        cout << "Inserisci una classe valida nel seguente formato: SezioneCorsoIndirizzo (Esempio: 3CINF)" << endl;
+        return;
     }
-    else {
-        alunni[matricola].matricola = matricola;
-        alunni[matricola].nome = nome;
-        alunni[matricola].cognome = cognome;
-        alunni[matricola].eta = eta;
-        alunni[matricola].anno = anno;
-        alunni[matricola].classe = classe;
-        alunni[matricola].bocciato = bocciato;
-        matricola++;
-        cout << "Alunno " << alunni[matricola].nome << " " << alunni[matricola].cognome << " caricato con successo" << endl;
-    }
-}
 
+    alunno temp;
+    temp.matricola = matricola;
+    temp.nome = nome;
+    temp.cognome = cognome;
+    temp.eta = eta;
+    temp.anno = anno;
+    temp.classe = classe;
+    temp.bocciato = bocciato;
+    alunni.push_back(temp);
+    matricola++;
+
+    cout << "Alunno " << alunni.back().nome << " " << alunni.back().cognome << " caricato con successo" << endl;
+}
 void cancellaAlunno(vector<alunno> &alunni, vector<voto> &voti) {
     int matricola;
     cout << "Inserisci la matricola dell'alunno che vuoi cancellare" << endl;
