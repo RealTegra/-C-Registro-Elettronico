@@ -17,3 +17,11 @@ CLion
 - Caricare/Modificare/Eliminare i voti di un alunno
 - Visualizzare tutti gli alunni
 - Visualizzare la media totale e i voti di un alunno
+
+# Come Eseguirlo?
+
+Andare nella cartella /cmake-build-debug ed avviare RegistroElettronico.exe
+
+# Come aprire il codice sorgente?
+
+andare nella root della cartella e aprire il main.cpp
