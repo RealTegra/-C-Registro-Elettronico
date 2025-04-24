@@ -1,0 +1,13 @@
+# ninja log v6
+8	285	7671878019575761	CMakeFiles/RegistroElettronico.dir/main.cpp.obj.ddi	818a080945dc012d
+285	376	7671878023145672	CMakeFiles/RegistroElettronico.dir/CXX.dd	1721a5d92c854012
+285	376	7671878023145672	C:/Users/marco/Downloads/RegistroElettronico/cmake-build-debug/CMakeFiles/RegistroElettronico.dir/CXXModules.json	1721a5d92c854012
+285	376	7671878023145672	CMakeFiles/RegistroElettronico.dir/main.cpp.obj.modmap	1721a5d92c854012
+388	1362	7671878023382391	CMakeFiles/RegistroElettronico.dir/main.cpp.obj	c7e26bdcdaffb385
+1365	1639	7671878033148782	RegistroElettronico.exe	3466d9191cfc14af
+131	629	7671906451256002	CMakeFiles/RegistroElettronico.dir/main.cpp.obj.ddi	818a080945dc012d
+633	765	7671906456260920	CMakeFiles/RegistroElettronico.dir/CXX.dd	1721a5d92c854012
+633	765	7671906456260920	C:/Users/marco/Downloads/RegistroElettronico/cmake-build-debug/CMakeFiles/RegistroElettronico.dir/CXXModules.json	1721a5d92c854012
+633	765	7671906456260920	CMakeFiles/RegistroElettronico.dir/main.cpp.obj.modmap	1721a5d92c854012
+777	1600	7671906457710538	CMakeFiles/RegistroElettronico.dir/main.cpp.obj	c7e26bdcdaffb385
+1600	2066	7671906465937134	RegistroElettronico.exe	3466d9191cfc14af
