@@ -155,13 +155,15 @@ void cancellaAlunno(vector<alunno> &alunni, vector<voto> &voti) {
     cin.ignore();
     cin >> matricola;
 
+    size_t j = 0;
+
     bool ok = false;
-    for (size_t j = 0; j < alunni.size(); j++) {
+    while (j < alunni.size() && !ok) {
         if (alunni[j].matricola == matricola) {
             alunni.erase(alunni.begin() + j);
             ok = true;
-            break;
         }
+        j++;
     }
 
     if (ok) {
@@ -186,47 +188,47 @@ void cancellaAlunno(vector<alunno> &alunni, vector<voto> &voti) {
 void caricaVoto(vector<alunno> &alunni, vector<voto> &voti) {
     int mat;
     cout << "Inserisci la matricola dell'alunno a cui vuoi aggiungere un voto: ";
-    cin.ignore();
     cin >> mat;
 
     bool trovato = false;
-    for (const auto &a : alunni) {
-        if (a.matricola == mat) {
+    int i = 0;
+
+    while (i < alunni.size() && !trovato) {
+        if (alunni[i].matricola == mat) {
             trovato = true;
-            break;
         }
+        i++;
     }
 
     if (!trovato) {
         cout << "Matricola non trovata. Impossibile caricare il voto." << endl;
-        return;
     }
+    else {
+        string materia;
+        int valutazione;
 
-    string materia;
-    int valutazione;
+        cout << "Inserisci la materia: ";
+        cin.ignore();
+        getline(cin, materia);  //per spazi
 
-    cout << "Inserisci la materia: ";
-    cin.ignore();
-    cin >> materia;
+        cout << "Inserisci la valutazione (da 1 a 10): ";
+        cin >> valutazione;
 
-    cout << "Inserisci la valutazione (da 1 a 10): ";
-    cin.ignore();
-    cin >> valutazione;
+        if (valutazione < 1 || valutazione > 10) {
+            cout << "Valutazione non valida. Deve essere tra 1 e 10." << endl;
+        }
+        else {
+            voto nuovoVoto;
+            nuovoVoto.IDVoto = IDVoto++;
+            nuovoVoto.matricola = mat;
+            nuovoVoto.materia = materia;
+            nuovoVoto.valutazione = valutazione;
 
-    if (valutazione < 1 || valutazione > 10) {
-        cout << "Valutazione non valida. Deve essere tra 1 e 10." << endl;
-        return;
+            voti.push_back(nuovoVoto);
+
+            cout << "Voto caricato con successo per l'alunno con matricola " << mat << "." << endl;
+        }
     }
-
-    voto nuovoVoto;
-    nuovoVoto.IDVoto = IDVoto++;
-    nuovoVoto.matricola = mat;
-    nuovoVoto.materia = materia;
-    nuovoVoto.valutazione = valutazione;
-
-    voti.push_back(nuovoVoto);
-
-    cout << "Voto caricato con successo per l'alunno con matricola " << mat << "." << endl;
 }
 
 void modificaVoto(vector<voto> &voti) {
@@ -281,13 +283,24 @@ void cancellaVoto(vector<voto> &voti) {
 
     bool trovato = false;
 
-    for (int i = 0; i < voti.size(); i++) {
+    int i = 0;
+
+    while (i < voti.size()) {
         if (voti[i].IDVoto == id) {
             voti.erase(voti.begin() + i);
             trovato = true;
             cout << "Voto cancellato con successo!" << endl;
-            break;
+            // non incrementiamo i perché abbiamo già trovato e cancellato
+            // e vogliamo uscire dal ciclo
+
+            i = voti.size(); // forza uscita
+        } else {
+            i++;
         }
+    }
+
+    if (!trovato) {
+        cout << "Nessun voto trovato con l'ID specificato." << endl;
     }
 
     if (!trovato) {
@@ -296,20 +309,20 @@ void cancellaVoto(vector<voto> &voti) {
 }
 
 void visualizzaAlunni(vector<alunno> &alunni) {
-    if (alunni.empty()) {
+    if (!alunni.empty()) {
+        cout << "\nLista degli alunni:\n";
+        for (int i = 0; i < alunni.size(); i++) {
+            cout << "Matricola: " << alunni[i].matricola << endl;
+            cout << "Nome: " << alunni[i].nome << " " << alunni[i].cognome << endl;
+            cout << "Eta: " << alunni[i].eta << " anni" << endl;
+            cout << "Anno di nascita: " << alunni[i].anno << endl;
+            cout << "Classe: " << alunni[i].classe << endl;
+            cout << "Bocciato: " << (alunni[i].bocciato ? "Sì" : "No") << endl;
+            cout << "-----------------------------" << endl;
+        }
+    } else
+        {
         cout << "Nessun alunno presente." << endl;
-        return;
-    }
-
-    cout << "\nLista degli alunni:\n";
-    for (int i = 0; i < alunni.size(); i++) {
-        cout << "Matricola: " << alunni[i].matricola << endl;
-        cout << "Nome: " << alunni[i].nome << " " << alunni[i].cognome << endl;
-        cout << "Eta: " << alunni[i].eta << " anni" << endl;
-        cout << "Anno di nascita: " << alunni[i].anno << endl;
-        cout << "Classe: " << alunni[i].classe << endl;
-        cout << "Bocciato: " << (alunni[i].bocciato ? "Sì" : "No") << endl;
-        cout << "-----------------------------" << endl;
     }
 }
 
@@ -354,7 +367,7 @@ void visualizzaVoti(vector<alunno> &alunni, vector<voto> &voti) {
     if (conteggio == 0) {
         cout << "Nessun voto registrato per questo alunno." << endl;
     } else {
-        double media = static_cast<double>(somma) / conteggio;
+        double media = static_cast<double>(somma) / conteggio; //cast di somma
         cout << "Media totale: " << media << endl;
     }
 }
